@@ -20,7 +20,9 @@ class Block{
             this.hash = this.calculateHash();
         }
         console.log("Block mined :" + this.hash);
+        
     }
+    
 }
 class Blockchain{
     constructor(){
@@ -33,6 +35,8 @@ class Blockchain{
     getLatestBlock(){
         return this.chain[this.chain.length - 1];
     }
+    
+  
     addBlock(newBlock){
         newBlock.previousHash = this.getLatestBlock().hash;
         newBlock.mineBlock(this.difficulty);
