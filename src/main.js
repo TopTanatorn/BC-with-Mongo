@@ -56,6 +56,7 @@ MongoClient.connect(url, function (err, db) {//connect database mongo db
 
     client.on('message', function (topic, message) {//connect MQTT
         // message is Buffer
+        console.time("BC-Process");
 
         if (topic === roomTemp) {
             iotChainTemp.addBlock(new Block(Date.now(), message.toString()));//creare block chain
@@ -98,6 +99,7 @@ MongoClient.connect(url, function (err, db) {//connect database mongo db
 
 
         });
+        console.timeEnd("BC-Process");
     });
 
 });
