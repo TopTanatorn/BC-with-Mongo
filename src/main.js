@@ -108,6 +108,7 @@ MongoClient.connect(url, function (err, db) {//connect database mongo db
         console.log("latency(ms) :",tm );
         console.log("diffecalty levels :",df );
 
+        console.log("------------------------------------------------------------" );
         var myobj = [ {Latency_ms: tm, Diffecalty: df} ];
         dbo.collection("BC-Preformance").insertMany(myobj, function(err, res) {
             if (err) throw err;
