@@ -34,7 +34,9 @@ client.on('connect', function () {
 
 // Receive Message and print on terminal
 
-MongoClient.connect(url, function (err, db) {//connect database mongo db
+MongoClient.connect(url, {
+    
+}, function (err, db) {//connect database mongo db
     if (err) throw err;
 
     var dbo = db.db("BC-Database");//add to colection name
@@ -57,7 +59,7 @@ MongoClient.connect(url, function (err, db) {//connect database mongo db
     client.on('message', function (topic, message) {//connect MQTT
         // message is Buffer
         console.time("BC-Process");
-        var begin=Date.now();
+        var begin = Date.now();
 
         if (topic === roomTemp) {
             iotChainTemp.addBlock(new Block(Date.now(), message.toString()));//creare block chain
@@ -101,19 +103,20 @@ MongoClient.connect(url, function (err, db) {//connect database mongo db
 
         });
         console.timeEnd("BC-Process");
-        var end= Date.now();
-        var timeSpent=(end-begin);
+        var end = Date.now();
+        var timeSpent = (end - begin);
         const tm = timeSpent;
         const df = iotChainTemp.difficulty;
-        console.log("latency(ms) :",tm );
-        console.log("diffecalty levels :",df );
+        console.log("latency(ms) :", tm);
+        console.log("diffecalty levels :", df);
 
-        console.log("------------------------------------------------------------" );
-        var myobj = [ {Latency_ms: tm, Diffecalty: df} ];
-        dbo.collection("BC-Preformance").insertMany(myobj, function(err, res) {
+        console.log("------------------------------------------------------------");
+        var myobj = [{ Latency_ms: tm, Diffecalty: df }];
+        dbo.collection("BC-Preformance").insertMany(myobj, function (err, res) {
             if (err) throw err;
 
-          });
+        });
     });
 
 });
+
