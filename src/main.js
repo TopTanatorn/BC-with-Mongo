@@ -35,7 +35,9 @@ client.on('connect', function () {
 // Receive Message and print on terminal
 
 MongoClient.connect(url, {
-    
+    connectTimeoutMS: 60*60*1000,    
+    socketTimeoutMS: 60*60*1000,  
+
 }, function (err, db) {//connect database mongo db
     if (err) throw err;
 
