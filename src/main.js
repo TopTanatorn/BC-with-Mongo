@@ -19,7 +19,7 @@ let iotChainLED2 = new Blockchain();//create chain
 var client = mqtt.connect({
     host: MQTT_SERVER,
     port: MQTT_PORT,
-    connectTimeout: 60*60*1000
+    connectTimeout: 24*60*60*1000,
 
 });
 
@@ -36,8 +36,8 @@ client.on('connect', function () {
 // Receive Message and print on terminal
 
 MongoClient.connect(url, {
-    connectTimeoutMS: 60 * 60 * 1000,
-    socketTimeoutMS: 60 * 60 * 1000,
+    connectTimeoutMS: 24*60 * 60 * 1000,
+    socketTimeoutMS: 24*60 * 60 * 1000,
 
 }, function (err, db) {//connect database mongo db
     if (err) throw err;
