@@ -19,6 +19,7 @@ let iotChainLED2 = new Blockchain();//create chain
 var client = mqtt.connect({
     host: MQTT_SERVER,
     port: MQTT_PORT,
+    connectTimeout: 60*60*1000
 
 });
 
